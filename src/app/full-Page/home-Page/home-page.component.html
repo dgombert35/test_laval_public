@@ -1,4 +1,19 @@
-<div class="homePage">
-    <p>TEst</p>
-    <button class="btn-primary">TEST</button>
+<div class="homePage" [class.isDarkTheme]="isDarkTheme">
+    <div class="homePage__toggleTheme">
+        <mat-toolbar>
+            <div class="flex-stretch"></div>
+            <mat-icon class="mr-8" [class.isMatIconDarkTheme]="isDarkTheme">brightness_5</mat-icon>
+            <mat-slide-toggle [formControl]="toggleControl" class="mr-8">
+            </mat-slide-toggle>
+            <mat-icon [class.isMatIconDarkTheme]="isDarkTheme">bedtime</mat-icon>
+        </mat-toolbar>
+    </div>
+
+    <div class="homePage__leftPart">
+        <app-left-part></app-left-part>
+    </div>
+
+    <div class="homePage__rightPart" *ngIf="flightsDestinations">
+        <app-right-part></app-right-part>
+    </div>
 </div>

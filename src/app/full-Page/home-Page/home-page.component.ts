@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { OverlayContainer } from '@angular/cdk/overlay';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+
+import { HomePageService } from 'src/app/service/https/home-page.service';
+
+import { FlightsDestination } from '../../models/home-page-models/home-page.models';
 
 @Component({
   selector: 'app-home-page',
@@ -7,9 +13,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  flightsDestinations: FlightsDestination[];
 
-  ngOnInit(): void {
+  toggleControl = new FormControl(false);
+
+  isDarkTheme = false;
+
+  constructor(private readonly homePageService: HomePageService) {}
+
+  ngOnInit() {
+
+    localStorage.clear();
+    this.homePageService.postLoginsInformations().subscribe();
+    this.toggleControl.valueChanges.subscribe((dark) => {
+      this.isDarkTheme = dark;
+    });
   }
 
 }

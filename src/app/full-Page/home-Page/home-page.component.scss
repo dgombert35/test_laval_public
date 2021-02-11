@@ -1,0 +1,28 @@
+@import '~src/assets/styles/colorsVariables.scss';
+
+
+.homePage {
+    padding: 3%;
+    height: 100%;
+}
+
+.isDarkTheme {
+    background-color: $darkMode ;
+	color: $lightMode;
+}
+
+mat-toolbar {
+    background: none;
+}
+
+mat-icon {
+    color: $darkMode;
+}
+
+mat-slide-toggle {
+    margin: 0 1%;
+}
+
+.isMatIconDarkTheme {
+    color: $lightMode;
+}
