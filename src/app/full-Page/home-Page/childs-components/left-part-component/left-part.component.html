@@ -1,23 +1,36 @@
 <div class="leftPart">
     <form class="leftPart__form" [formGroup]="flightSearchForm" (keyup.enter)="searchFlight()">
-        <div class="leftPart__form__cityChoice input" [class.error]="getInvalidInput(origin)">
-            <mat-form-field>
+        <div class="leftPart__form__cityChoice" [class.error]="getInvalidInput(origin)">
+            <mat-form-field class="inputWithInformations">
                 <mat-label>Origin</mat-label>
                 <input matInput
                        [formControlName]="origin"
-                       placeholder="Ex : Copenhagen"
+                       placeholder="Ex : MAD"
                        [value]="flightSearchForm.get(origin).value">
             </mat-form-field>
+            <div class="leftPart__form__cityChoice__cityChoiceInformation inputInformation" *ngIf="!getInvalidInput(origin); else: originError">
+                <markdown [data]="pleaseIota"></markdown>
+            </div>
         </div>
-        <div class="leftPart__form__matError" *ngIf="getInvalidInput(origin)">
-            <mat-error>This field is required</mat-error>
+        <ng-template #originError>
+            <div class="leftPart__form__matError">
+                <mat-error><markdown [data]="originRequired"></markdown></mat-error>
+            </div>
+        </ng-template>
+        <div class="leftPart__form__informations inputInformation input" [class.originError]="getInvalidInput(origin)">
+            <markdown [data]="followIotaLink"></markdown>
         </div>
-        <div class="leftPart__form__departureDate input">
+
+        <div class="leftPart__form__departureDate input" [class.error]="getInvalidDate()">
             <mat-form-field>
                 <mat-label>Depart date</mat-label>
-                <input matInput
-                       [formControlName]="departureDate">
-            </mat-form-field>
+                <input matInput [matDatepicker]="picker" [formControlName]="departureDate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+        </div>
+        <div class="leftPart__form__matError" *ngIf="getInvalidDate()">
+            <mat-error>{{getErrorDateMsg()}}</mat-error>
         </div>
         <div class="leftPart__form__oneWay input">
             <mat-checkbox class="leftPart__form__oneWay__checkbox"
@@ -36,13 +49,15 @@
                        (keypress)="keyPress($event)"
                        [value]="flightSearchForm.get(duration).value">
             </mat-form-field>
-            <div class="leftPart__form__duration__durationInformation inputInformation" *ngIf="!getInvalidInput(duration)">
-                <p>Please enter Exact duration or range of durations of the travel, in days.</p>
+            <div class="leftPart__form__duration__durationInformation inputInformation" *ngIf="!getInvalidInput(duration); else durationError">
+                <markdown [data]="travelDuration"></markdown>
             </div>
         </div>
-        <div class="leftPart__form__matError" *ngIf="getInvalidInput(duration)">
-            <mat-error>Duration can not be lower than 1 days or higher than 15 days</mat-error>
-        </div>
+        <ng-template #durationError>
+            <div class="leftPart__form__matError">
+                <mat-error><markdown [data]="durationDaysError"></markdown></mat-error>
+            </div>
+        </ng-template>
         <div class="leftPart__form__nonStop input">
             <mat-checkbox class="leftPart__form__nonStop__checkbox"
                           [formControlName]="nonStop">
@@ -61,11 +76,11 @@
                        [value]="flightSearchForm.get(maxPrice).value">
             </mat-form-field>
             <div class="leftPart__form__maxPrice__maxPriceInformation inputInformation" *ngIf="!getInvalidInput(maxPrice)">
-                <p>The value should be a positive number, without decimals</p>
+                <p><markdown [data]="maxPriceInformations"></markdown></p>
             </div>
         </div>
         <div class="leftPart__form__matError"  *ngIf="getInvalidInput(maxPrice)">
-            <mat-error>This value is not positive or contain decimals</mat-error>
+            <mat-error><markdown [data]="maxPriceError"></markdown></mat-error>
         </div>
         <div class="leftPart__form__viewBy input">
             <mat-form-field>
