@@ -3,6 +3,16 @@
 .leftPart {
     &__form {
 
+        &__informations {
+            ::ng-deep {
+                markdown {
+                    p {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
         &__oneWay, &__nonStop {
             display: flex;
 
@@ -57,6 +67,10 @@
     height: 60px;
 }
 
+.originError {
+    padding-top: 8%;
+}
+
 mat-error {
     margin-bottom: 5.5%;
     font-size: 13px;
@@ -70,4 +84,10 @@ mat-error {
 
 .darkTheme {
     color: $lightMode;
+}
+
+a {
+    &:hover{
+        cursor: pointer;
+    }
 }
