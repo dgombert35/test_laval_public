@@ -2,26 +2,21 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
+Instruction : How to use the application :
+    => git clone the project from Git => {add the link to git project}
+    or unzip the project
+
+    => open it with an IDE software like VScode, or Webstorm ... OR with the terminal of laptop got to the folder of this project
+
 ## Development server
+    => Run the project with cmd : `npm run start` in the terminal of software, or in the terminal of laptop
+          ===> Please be sure to be in this folder : /Amadeaus_project/amadeustestproject
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+    => when the project is complete running. Navigate to `http://localhost:4200/`
+                ENJOY the Test :)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Explications
+The shared module include all elements could be use by all components of the application.
+The application is cut with severals modules => permit better performance, and avoid multiples lines of code in AppModule
+Use lazy loading to call these differents modules
