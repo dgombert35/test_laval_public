@@ -1,6 +1,5 @@
 @import '~src/assets/styles/colorsVariables.scss';
 
-
 .leftPart {
     &__form {
 
@@ -67,4 +66,8 @@ mat-error {
     mat-form-field {
         width: 85%;
     }
+}
+
+.darkTheme {
+    color: $lightMode;
 }

@@ -6,7 +6,7 @@
                 <input matInput
                        [formControlName]="origin"
                        placeholder="Ex : Copenhagen"
-                       [value]="flightSearchForm.get(origin).value" style="color: black!important;">
+                       [value]="flightSearchForm.get(origin).value">
             </mat-form-field>
         </div>
         <div class="leftPart__form__matError" *ngIf="getInvalidInput(origin)">
@@ -23,7 +23,7 @@
             <mat-checkbox class="leftPart__form__oneWay__checkbox"
                           [formControlName]="oneWay">
             </mat-checkbox>
-            <div class="leftPart__form__oneWay__oneWayLabel checkBoxLabel">
+            <div class="leftPart__form__oneWay__oneWayLabel checkBoxLabel" [class.darkTheme]="isDark">
               One Way
             </div>
         </div>
@@ -47,7 +47,7 @@
             <mat-checkbox class="leftPart__form__nonStop__checkbox"
                           [formControlName]="nonStop">
             </mat-checkbox>
-            <div class="leftPart__form__nonStop__nonStopLabel checkBoxLabel">
+            <div class="leftPart__form__nonStop__nonStopLabel checkBoxLabel" [class.darkTheme]="isDark">
               Non Stop
             </div>
         </div>
