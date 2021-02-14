@@ -13,22 +13,12 @@ export class TokenService {
     }
 
     public getAccessToken(): Observable<unknown> {
+        console.log('get ITEM', this.localStorage.getItem(this.LS_ACCESS_TOKEN_KEY));
         return this.localStorage.getItem(this.LS_ACCESS_TOKEN_KEY);
-    }
-
-    public getRefreshToken(): Observable<unknown> {
-        return this.localStorage.getItem(this.LS_REFRESH_TOKEN_KEY);
     }
 
     public setAccessToken(token: string): TokenService {
         this.localStorage.setItem(this.LS_ACCESS_TOKEN_KEY, token);
-        this.cookieService.set(this.LS_ACCESS_TOKEN_KEY, token, 1 / 24); // 1 hour
-        return this;
-    }
-
-    public setRefreshToken(token: string): TokenService {
-        this.localStorage.setItem(this.LS_REFRESH_TOKEN_KEY, token);
-        this.cookieService.set(this.LS_REFRESH_TOKEN_KEY, token, 14); // 14 days
         return this;
     }
 
