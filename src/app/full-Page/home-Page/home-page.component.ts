@@ -4,9 +4,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { HomePageService } from 'src/app/service/https/home-page.service';
 
-import { FlightsDestination, FlightForm, IotaCode, GetResponseFlightsDestinationsOrDateFromApi } from '../../models/home-page-models/home-page.models';
+import { FlightsDestination,
+         FlightForm,
+         GetResponseFlightsDestinationsOrDateFromApi } from '../../models/home-page-models/home-page.models';
 
-import { IotaCodeList } from '../../service/datas/home-page-datas/home-page.datas';
+import { Store } from '../../store/store';
+
 
 @Component({
   selector: 'app-home-page',
@@ -20,8 +23,6 @@ export class HomePageComponent implements OnInit {
 
   toggleControl = new FormControl(false);
 
-  iotaCode: IotaCode[];
-
   backendErrorDetail: string;
 
   airPlane = '/assets/icons/airplane-travel.png';
@@ -30,12 +31,11 @@ export class HomePageComponent implements OnInit {
   backendErrorResponse = false;
   isFlightDestination = false;
 
-  constructor(private readonly homePageService: HomePageService) {}
+  constructor(private readonly homePageService: HomePageService, private readonly store: Store) {}
 
   ngOnInit() {
 
     localStorage.clear();
-    this.iotaCode = IotaCodeList;
     this.homePageService.postLoginsInformations().subscribe();
     this.toggleControl.valueChanges.subscribe((dark) => {
       this.isDarkTheme = dark;
@@ -43,9 +43,7 @@ export class HomePageComponent implements OnInit {
   }
 
   getFlightSearchResults(flightSearch: FlightForm) {
-
-    flightSearch.origin = this.getIotaCode(flightSearch.origin);
-
+    this.store.set('isLoading', true);
     if(flightSearch.viewBy != '') {
       flightSearch.viewBy = flightSearch.viewBy.toUpperCase();
     }
@@ -62,16 +60,4 @@ export class HomePageComponent implements OnInit {
        }
     });
   }
-
-  private getIotaCode(origin: string): string {
-    let iotaCodeOfOrigin = '';
-    this.iotaCode.find((iotaCode: IotaCode) => {
-      if(origin.toLowerCase() === iotaCode.cityAirport.toLowerCase()) {
-        iotaCodeOfOrigin = iotaCode.code;
-      }
-    });
-
-    return iotaCodeOfOrigin;
-  }
-
 }

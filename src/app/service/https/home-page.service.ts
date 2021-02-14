@@ -10,6 +10,7 @@ import { FlightForm, GetResponseFlightsDestinationsOrDateFromApi } from '../../m
 
 import { TokenService } from '../core/token.service';
 import { plainToClass } from 'class-transformer';
+import { Store } from '../../store/store';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,9 @@ export class HomePageService {
 
     configDev = DevelopmentConfig;
 
-    constructor(private readonly http: HttpClient, private readonly tokenService: TokenService){}
+    constructor(private readonly http: HttpClient,
+                private readonly tokenService: TokenService,
+                private readonly store: Store){}
 
 
     postLoginsInformations(): Observable<Token> {
@@ -62,7 +65,9 @@ export class HomePageService {
         const options = { params: params, headers: this.getHttpOptionsUser() };
 
         return this.http.get<HttpResponse<GetResponseFlightsDestinationsOrDateFromApi>>(`${this.configDev.apiLoginUrl}shopping/flight-destinations?origin=${flightForm.origin}&oneWay=${flightForm.oneWay}&nonStop=${flightForm.nonStop}`, options).pipe(
-            finalize(() => {}),
+            finalize(() => {
+                this.store.set('isLoading', false);
+            }),
             map(flighDestinations => {return flighDestinations}),
             catchError((error) => {
               return of(error);
