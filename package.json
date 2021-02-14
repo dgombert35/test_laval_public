@@ -24,9 +24,11 @@
     "@ngx-pwa/local-storage": "^10.1.0",
     "bootstrap": "4.1.1",
     "class-transformer": "^0.3.2",
+    "moment": "^2.29.1",
     "ngx-bootstrap": "^6.2.0",
     "ngx-cookie-service": "^11.0.2",
     "ngx-markdown": "^8.2.2",
+    "ngx-moment": "^5.0.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
