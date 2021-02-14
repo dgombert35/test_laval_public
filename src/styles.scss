@@ -1,17 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~src/assets/styles/colorsVariables.scss';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body { height: 100%; }
+html, body { height: 100vh; }
 body {
     font-family: Roboto, 'sans-serif' !important;
     font-size: 20px !important;
 }
 
 button {
+    background: none;
+    border: none;
+    color: $lightMode;
+    background-color: $backgroundButton;
+    border: 1px solid $backgroundButton;
+    border-radius: 50px;
+    padding: 3%;
+
     &:focus {
         outline: none;
+
     }
 
     &:hover {
         cursor: pointer;
+        background-color: $backgrounButtonHover;
+        border: 1px solid $backgrounButtonHover;
+        color: $darkMode;
     }
+
+    &:disabled {
+        cursor: not-allowed;
+        background-color: $backgroundButtonDisable;
+        border: 1px solid $backgroundButtonDisable;
+        color: $darkMode;
+    }
+}
+
+.container {
+    margin: 0;
+    max-width: 100%;
+}
+
+::ng-deep {
+    .mat-form-field {
+        font-family: Roboto, 'sans-serif' !important;
+    }
+    .mat-form-field-label {
+        color: $darkMode!important;
+    }
+}
+
+mat-error {
+    font-size: 15px;
+    color: $errorColor;
 }
