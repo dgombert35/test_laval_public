@@ -1,4 +1,4 @@
-<div class="homePage" [class.isDarkTheme]="isDarkTheme">
+<div class="homePage container" [class.isDarkTheme]="isDarkTheme">
     <div class="homePage__toggleTheme">
         <mat-toolbar>
             <div class="flex-stretch"></div>
@@ -8,12 +8,19 @@
             <mat-icon [class.isMatIconDarkTheme]="isDarkTheme">bedtime</mat-icon>
         </mat-toolbar>
     </div>
+    <div class="row">
+        <div class="homePage__leftPart col-xl-3 col-lg-3 col-md-3 col-sm-3">
+            <app-left-part (emitFlightSearch)="getFlightSearchResults($event)"></app-left-part>
+        </div>
 
-    <div class="homePage__leftPart">
-        <app-left-part></app-left-part>
-    </div>
-
-    <div class="homePage__rightPart" *ngIf="flightsDestinations">
-        <app-right-part></app-right-part>
+        <div class="homePage__rightPart col-xl-9 col-lg-9 col-md-9 col-sm-9" *ngIf="isFlightDestination && !backendErrorResponse">
+            <app-right-part [flightsResult]="flightsDestinations"></app-right-part>
+        </div>
+        <div class="homePage__errorPart" *ngIf="backendErrorResponse && !isFlightDestination">
+            <mat-error>{{backendErrorDetail}}</mat-error>
+        </div>
+        <div class="homePage__icon col-xl-9 col-lg-9 col-md-9 col-sm-9" *ngIf="!backendErrorResponse && !isFlightDestination">
+            <img [src]='airPlane'>
+        </div>
     </div>
 </div>
