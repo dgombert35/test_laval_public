@@ -3,17 +3,21 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.1.
 
 Instruction : How to use the application :
-    => git clone the project from Git => {add the link to git project}
+=> git clone the project from Git => {add the link to git project}
     or unzip the project
 
     => open it with an IDE software like VScode, or Webstorm ... OR with the terminal of laptop got to the folder of this project
+=> be on the master branch or develop branch : `git branch` to control branch position
+## Project updates / installation
+ => use cmd : `npm install` to update project with packages
 
 ## Development server
-    => Run the project with cmd : `npm run start` in the terminal of software, or in the terminal of laptop
-          ===> Please be sure to be in this folder : /Amadeaus_project/amadeustestproject
+=> Run the project with cmd : `npm run start` in the terminal of software, or in the terminal of laptop
+===> Please be sure to be in this folder : `/Amadeaus_project/amadeustestproject`
 
-    => when the project is complete running. Navigate to `http://localhost:4200/`
-                ENJOY the Test :)
+=> when the project is complete running. Navigate to `http://localhost:4200/`
+
+        ENJOY the Test :)
 
 
 ## Explications
