@@ -9,11 +9,6 @@ export class FlightForm {
     viewBy?: string;
 }
 
-export class IotaCode {
-    cityAirport: string;
-    code: string;
-}
-
 export class GetResponseFlightsDestinationsOrDateFromApi {
     data: FlightsDestination[];
     dictionaries:Dictionnaries;
