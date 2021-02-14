@@ -1,0 +1,29 @@
+@import '~src/assets/styles/colorsVariables.scss';
+
+.rightPart {
+
+    padding-bottom: 3%;
+
+    &__flight {
+        width: 100%;
+        border: 1px solid $backgroundButton;
+        background-color: $backgroundButtonDisable;
+        color: $darkMode;
+        border-radius: 50px;
+        padding: 3%;
+
+        &__destinationOriginPrice {
+            display: flex;
+            justify-content: space-between;
+        }
+        &__departureReturnDate {
+            display: flex;
+            justify-content: space-between;
+            max-width: 52%;
+
+            p{
+                margin:0;
+            }
+        }
+    }
+}

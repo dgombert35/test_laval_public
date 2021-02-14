@@ -1,1 +1,19 @@
-<p>right-part works!</p>
+<div class="rightPart" *ngFor="let flight of flightsResult">
+        <div class="rightPart__flight">
+            <div class="rightPart__flight__destinationOriginPrice">
+                <div class="rightPart__flight__destinationOriginPrice__origin">
+                    <p class="rightPart__flight__destinationOriginPrice__origin__name">From: {{flight.origin}}</p>
+                </div>
+                <div class="rightPart__flight__destinationOriginPrice__destination">
+                    <p class="rightPart__flight__destinationOriginPrice__destination__name">To: {{flight.destination}}</p>
+                </div>
+                <div class="rightPart__flight__destinationOriginPrice__price">
+                    <p class="rightPart__flight__destinationOriginPrice__price__amount">Price: {{flight.price.total}} €</p>
+                </div>
+            </div>
+            <div class="rightPart__flight__departureReturnDate">
+                <p class="rightPart__flight__departureReturnDate__departureDate">Depart: {{flight.departureDate}}</p>
+                <p class="rightPart__flight__departureReturnDate__returnDate">Return: {{flight.returnDate}}</p>
+            </div>
+        </div>
+</div>
