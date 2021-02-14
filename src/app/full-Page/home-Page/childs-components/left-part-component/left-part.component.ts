@@ -7,6 +7,7 @@ import { FlightForm } from '../../../../models/home-page-models/home-page.models
 
 import { ViewsList } from '../../../../service/datas/home-page-datas/home-page.datas';
 
+import * as moment from 'moment';
 @Component({
   selector: 'app-left-part',
   templateUrl: './left-part.component.html',
@@ -27,6 +28,19 @@ export class LeftPartComponent implements OnInit {
   viewBySelectedValue: string;
   numbeRegex: string;
 
+  iotaLInk = 'https://www.iata.org/en/publications/directories/code-search/';
+  pleaseIota = 'Please use IOTA code';
+  originRequired = 'This field is **required**';
+  followIotaLink = `If you don\'t know the IOTA code, please folow this link : \r\r[Link to iota code](${this.iotaLInk})`;
+  travelDuration = 'Please enter Exact duration or range of durations of the travel, in days.';
+  durationDaysError = 'Duration can not be lower than **1 days or higher than 15 days**';
+  maxPriceInformations = 'The value should be a **positive number, without decimals**';
+  maxPriceError = 'This value is **not positive** or **contain decimals**';
+
+  dateInferiorDayDate = false;
+  dateSuperiorEighteenDays = false;
+  isLoading = false;
+
   origin = 'origin';
   departureDate = 'departureDate';
   oneWay = 'oneWay';
@@ -46,6 +60,39 @@ export class LeftPartComponent implements OnInit {
   getInvalidInput(id: string): boolean {
     let isInvalid = this.flightSearchForm.get(id).invalid && this.flightSearchForm.get(id).touched;
     return isInvalid;
+  }
+
+  getInvalidDate(): boolean {
+
+    //-------- Calc of valid date -----------
+    let inputDate = moment(this.flightSearchForm.get(this.departureDate).value).format('yyyy-MM-DD');
+    let dateOfDay = moment().format('yyyy-MM-DD');
+
+    if(inputDate) {
+      (moment(inputDate, 'yyyy-MM-DD').isBefore(dateOfDay)) ? this.dateInferiorDayDate = true : this.dateInferiorDayDate = false;
+    }
+
+    //-------- Calc of if date superior 18 days -----------
+    let inputDateDateFormat = new Date(inputDate);
+    let dayDateFormat = new Date(dateOfDay);
+    let timeDiff = inputDateDateFormat.getTime() - dayDateFormat.getTime();
+    let daysDiff = timeDiff / (1000 * 3600 * 24);
+    (daysDiff > 18) ? this.dateSuperiorEighteenDays = true : this.dateSuperiorEighteenDays = false;
+
+
+
+    return this.dateInferiorDayDate || this.dateSuperiorEighteenDays;
+  }
+
+  getErrorDateMsg(): string {
+    let dateErrorMessage = '';
+
+    if(this.dateSuperiorEighteenDays) {
+      dateErrorMessage = 'The date should not be more 18 days from today';
+    } else if(this.dateInferiorDayDate) {
+      dateErrorMessage = 'The date is invalid';
+    }
+    return dateErrorMessage;
   }
 
   searchFlight() {
@@ -73,10 +120,9 @@ export class LeftPartComponent implements OnInit {
     this.emitFlightSearch.emit(this.flightSearchForm.value);
   }
 
-  //TODO add pattern regex for positive number, non decimal for maxPrice
   private flightSearchFormConstruction() {
     this.flightSearchForm = this.formBuilder.group({
-      origin: ['', [Validators.required]],
+      origin: ['', [Validators.required, Validators.maxLength(3)]],
       departureDate: [''],
       oneWay: [''],
       duration: ['', [Validators.maxLength(2), Validators.pattern(this.numbeRegex)]],
@@ -97,6 +143,11 @@ export class LeftPartComponent implements OnInit {
 
     if (this.flightSearchForm.get(this.viewBy).value === undefined || this.flightSearchForm.get(this.viewBy).value === '--') {
       this.flightSearchForm.get(this.viewBy).patchValue('');
+    }
+
+    if(this.flightSearchForm.get(this.nonStop).value) {
+      let inputDate = moment(this.flightSearchForm.get(this.departureDate).value).format('yyyy-MM-DD');
+      this.flightSearchForm.get(this.departureDate).patchValue(inputDate);
     }
   }
 
