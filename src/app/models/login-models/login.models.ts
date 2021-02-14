@@ -12,6 +12,13 @@ export interface LoginResponse {
     scope: string;
 }
 
+export class HttpError {
+    code: number;
+    detail: string;
+    status: number;
+    title: string;
+}
+
 export class Token implements LoginResponse {
 
     @Expose({name: 'type'})
