@@ -1,0 +1,70 @@
+@import '~src/assets/styles/colorsVariables.scss';
+
+
+.leftPart {
+    &__form {
+
+        &__oneWay, &__nonStop {
+            display: flex;
+
+            &__checkbox {
+                padding-top: 2px;
+            }
+
+            &__oneWayLabel, &__nonStopLabel {
+                padding-left: 1%;
+            }
+        }
+
+        &__duration {
+            &__durationInformation {
+                p {
+                    width: 83%;
+                }
+            }
+        }
+
+        &__viewBy {
+            padding-top: 2%;
+        }
+
+        &__searchButton {
+            padding-top: 2%;
+            width: 40%;
+            button {
+                width: 100%;
+            }
+        }
+    }
+}
+
+.inputInformation {
+    font-size: 13px;
+}
+
+.inputWithInformations {
+    height: 60px;
+}
+
+.checkBoxLabel {
+    color: $inputLabelColor;
+}
+
+.input {
+    padding-bottom: 5%;
+}
+
+.error {
+    height: 60px;
+}
+
+mat-error {
+    margin-bottom: 5.5%;
+    font-size: 13px;
+}
+
+::ng-deep {
+    mat-form-field {
+        width: 85%;
+    }
+}

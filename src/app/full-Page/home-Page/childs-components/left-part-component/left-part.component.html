@@ -1,1 +1,87 @@
-<p>left-part works!</p>
+<div class="leftPart">
+    <form class="leftPart__form" [formGroup]="flightSearchForm" (keyup.enter)="searchFlight()">
+        <div class="leftPart__form__cityChoice input" [class.error]="getInvalidInput(origin)">
+            <mat-form-field>
+                <mat-label>Origin</mat-label>
+                <input matInput
+                       [formControlName]="origin"
+                       placeholder="Ex : Copenhagen"
+                       [value]="flightSearchForm.get(origin).value" style="color: black!important;">
+            </mat-form-field>
+        </div>
+        <div class="leftPart__form__matError" *ngIf="getInvalidInput(origin)">
+            <mat-error>This field is required</mat-error>
+        </div>
+        <div class="leftPart__form__departureDate input">
+            <mat-form-field>
+                <mat-label>Depart date</mat-label>
+                <input matInput
+                       [formControlName]="departureDate">
+            </mat-form-field>
+        </div>
+        <div class="leftPart__form__oneWay input">
+            <mat-checkbox class="leftPart__form__oneWay__checkbox"
+                          [formControlName]="oneWay">
+            </mat-checkbox>
+            <div class="leftPart__form__oneWay__oneWayLabel checkBoxLabel">
+              One Way
+            </div>
+        </div>
+        <div class="leftPart__form__duration input" *ngIf="getOneWayValue()" [class.error]="getInvalidInput(duration)">
+            <mat-form-field class="inputWithInformations">
+                <mat-label>Duration</mat-label>
+                <input matInput
+                       [formControlName]="duration"
+                       placeholder="Ex : 12"
+                       (keypress)="keyPress($event)"
+                       [value]="flightSearchForm.get(duration).value">
+            </mat-form-field>
+            <div class="leftPart__form__duration__durationInformation inputInformation" *ngIf="!getInvalidInput(duration)">
+                <p>Please enter Exact duration or range of durations of the travel, in days.</p>
+            </div>
+        </div>
+        <div class="leftPart__form__matError" *ngIf="getInvalidInput(duration)">
+            <mat-error>Duration can not be lower than 1 days or higher than 15 days</mat-error>
+        </div>
+        <div class="leftPart__form__nonStop input">
+            <mat-checkbox class="leftPart__form__nonStop__checkbox"
+                          [formControlName]="nonStop">
+            </mat-checkbox>
+            <div class="leftPart__form__nonStop__nonStopLabel checkBoxLabel">
+              Non Stop
+            </div>
+        </div>
+        <div class="leftPart__form__maxPrice input">
+            <mat-form-field class="inputWithInformations" [class.error]="getInvalidInput(maxPrice)">
+                <mat-label>Max Price</mat-label>
+                <input matInput
+                       [formControlName]="maxPrice"
+                       placeholder="Ex : 50"
+                       (keypress)="keyPress($event)"
+                       [value]="flightSearchForm.get(maxPrice).value">
+            </mat-form-field>
+            <div class="leftPart__form__maxPrice__maxPriceInformation inputInformation" *ngIf="!getInvalidInput(maxPrice)">
+                <p>The value should be a positive number, without decimals</p>
+            </div>
+        </div>
+        <div class="leftPart__form__matError"  *ngIf="getInvalidInput(maxPrice)">
+            <mat-error>This value is not positive or contain decimals</mat-error>
+        </div>
+        <div class="leftPart__form__viewBy input">
+            <mat-form-field>
+                <mat-label>View By</mat-label>
+                <mat-select [formControlName]="viewBy"
+                            [(ngModel)]="viewBySelectedValue">
+
+                    <mat-option *ngFor="let view of viewList"
+                                [value]="view">
+                                {{ view | uppercase }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="leftPart__form__searchButton">
+            <button [disabled]="flightSearchForm.invalid" (click)="getFlightSearchResult()">Search</button>
+        </div>
+    </form>
+</div>
