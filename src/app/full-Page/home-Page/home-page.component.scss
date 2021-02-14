@@ -39,6 +39,30 @@
 .isDarkTheme {
     background-color: $darkMode ;
 	color: $lightMode;
+
+    ::ng-deep {
+        .mat-form-field-label {
+            color: $lightMode!important;
+        }
+
+        .mat-form-field-flex {
+            border-bottom: 1px solid $lightMode;
+        }
+
+        .mat-form-field-infix {
+            input {
+                color: $lightMode!important;
+            }
+        }
+
+        .mat-select-value {
+            color: $lightMode!important;
+        }
+
+        .mat-checkbox-frame {
+            border-color: $lightMode!important;
+        }
+    }
 }
 
 mat-toolbar {
