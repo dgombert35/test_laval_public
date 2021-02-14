@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCheckboxModule,
+  MatDatepickerModule,
          MatFormFieldModule,
          MatIconModule,
          MatInputModule,
+         MatNativeDateModule,
          MatSelectModule,
          MatSlideToggleModule,
          MatToolbarModule } from '@angular/material';
+import { MarkdownModule } from 'ngx-markdown';
 import { CommonModule } from '@angular/common';
 
 import { Shared } from './shared';
@@ -20,11 +23,14 @@ import { Shared } from './shared';
     FormsModule,
     CommonModule,
     MatToolbarModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatIconModule,
     MatInputModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MarkdownModule.forRoot(),
   ],
   exports: [
     CommonModule,
@@ -33,12 +39,15 @@ import { Shared } from './shared';
     ReactiveFormsModule,
     MatToolbarModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatIconModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MarkdownModule,
   ],
-  providers: [Shared],
+  providers: [Shared, MatDatepickerModule],
   bootstrap: []
 })
 export class SharedModule { }
