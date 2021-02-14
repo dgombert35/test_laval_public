@@ -8,7 +8,8 @@
                     <p class="rightPart__flight__destinationOriginPrice__destination__name">To: {{flight.destination}}</p>
                 </div>
                 <div class="rightPart__flight__destinationOriginPrice__price">
-                    <p class="rightPart__flight__destinationOriginPrice__price__amount">Price: {{flight.price.total}} €</p>
+                    <div class="rightPart__flight__destinationOriginPrice__price__amount">Price:
+                        <p class="rightPart__flight__destinationOriginPrice__price__amount__priceValue">{{flight.price.total}}</p>  EUR</div>
                 </div>
             </div>
             <div class="rightPart__flight__departureReturnDate">
