@@ -1,10 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { ViewsList } from '../../../../service/datas/home-page-datas/home-page.datas';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Shared } from '../../../shared/shared';
+
 import { FlightForm } from '../../../../models/home-page-models/home-page.models';
+
+import { ViewsList } from '../../../../service/datas/home-page-datas/home-page.datas';
 
 @Component({
   selector: 'app-left-part',
@@ -12,6 +13,9 @@ import { FlightForm } from '../../../../models/home-page-models/home-page.models
   styleUrls: ['./left-part.component.scss']
 })
 export class LeftPartComponent implements OnInit {
+
+  @Input()
+  isDark: boolean;
 
   @Output()
   emitFlightSearch = new EventEmitter<FlightForm>();
