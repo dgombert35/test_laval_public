@@ -10,6 +10,8 @@ import { HomePageModule } from './full-Page/home-Page/home-page.module';
 
 import { TokenService } from './service/core/token.service';
 
+import { Store } from './store/store';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -21,7 +23,7 @@ import { TokenService } from './service/core/token.service';
     BrowserAnimationsModule,
     BrowserModule,
   ],
-  providers: [TokenService],
+  providers: [TokenService, Store],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
