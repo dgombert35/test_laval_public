@@ -1,27 +1,28 @@
-<div class="leftPart">
-    <form class="leftPart__form" [formGroup]="flightSearchForm" (keyup.enter)="searchFlight()">
-        <div class="leftPart__form__cityChoice" [class.error]="getInvalidInput(origin)">
-            <mat-form-field class="inputWithInformations">
-                <mat-label>Origin</mat-label>
-                <input matInput
-                       [formControlName]="origin"
-                       placeholder="Ex : MAD"
-                       [value]="flightSearchForm.get(origin).value">
-            </mat-form-field>
-            <div class="leftPart__form__cityChoice__cityChoiceInformation inputInformation" *ngIf="!getInvalidInput(origin); else: originError">
-                <markdown [data]="pleaseIota"></markdown>
+<div class="leftPart container">
+    <form class="leftPart__form row" [formGroup]="flightSearchForm" (keyup.enter)="searchFlight()">
+        <div class="col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12">
+            <div class="leftPart__form__cityChoice" [class.error]="getInvalidInput(origin)">
+                <mat-form-field class="inputWithInformations">
+                    <mat-label>Origin</mat-label>
+                    <input matInput
+                           [formControlName]="origin"
+                           placeholder="Ex : MAD"
+                           [value]="flightSearchForm.get(origin).value">
+                </mat-form-field>
+                <div class="leftPart__form__cityChoice__cityChoiceInformation inputInformation" *ngIf="!getInvalidInput(origin); else: originError">
+                    <markdown [data]="pleaseIota"></markdown>
+                </div>
+            </div>
+            <ng-template #originError>
+                <div class="leftPart__form__matError">
+                    <mat-error><markdown [data]="originRequired"></markdown></mat-error>
+                </div>
+            </ng-template>
+            <div class="leftPart__form__informations inputInformation input " [class.originError]="getInvalidInput(origin)">
+                <markdown [data]="followIotaLink"></markdown>
             </div>
         </div>
-        <ng-template #originError>
-            <div class="leftPart__form__matError">
-                <mat-error><markdown [data]="originRequired"></markdown></mat-error>
-            </div>
-        </ng-template>
-        <div class="leftPart__form__informations inputInformation input" [class.originError]="getInvalidInput(origin)">
-            <markdown [data]="followIotaLink"></markdown>
-        </div>
-
-        <div class="leftPart__form__departureDate input" [class.error]="getInvalidDate()">
+        <div class="leftPart__form__departureDate input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12" [class.error]="getInvalidDate()">
             <mat-form-field>
                 <mat-label>Depart date</mat-label>
                 <input matInput [matDatepicker]="picker" [formControlName]="departureDate">
@@ -32,7 +33,7 @@
         <div class="leftPart__form__matError" *ngIf="getInvalidDate()">
             <mat-error>{{getErrorDateMsg()}}</mat-error>
         </div>
-        <div class="leftPart__form__oneWay input">
+        <div class="leftPart__form__oneWay input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12">
             <mat-checkbox class="leftPart__form__oneWay__checkbox"
                           [formControlName]="oneWay">
             </mat-checkbox>
@@ -40,7 +41,7 @@
               One Way
             </div>
         </div>
-        <div class="leftPart__form__duration input" *ngIf="getOneWayValue()" [class.error]="getInvalidInput(duration)">
+        <div class="leftPart__form__duration input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12" *ngIf="getOneWayValue()" [class.error]="getInvalidInput(duration)">
             <mat-form-field class="inputWithInformations">
                 <mat-label>Duration</mat-label>
                 <input matInput
@@ -58,7 +59,7 @@
                 <mat-error><markdown [data]="durationDaysError"></markdown></mat-error>
             </div>
         </ng-template>
-        <div class="leftPart__form__nonStop input">
+        <div class="leftPart__form__nonStop input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12">
             <mat-checkbox class="leftPart__form__nonStop__checkbox"
                           [formControlName]="nonStop">
             </mat-checkbox>
@@ -66,7 +67,7 @@
               Non Stop
             </div>
         </div>
-        <div class="leftPart__form__maxPrice input">
+        <div class="leftPart__form__maxPrice input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12">
             <mat-form-field class="inputWithInformations" [class.error]="getInvalidInput(maxPrice)">
                 <mat-label>Max Price</mat-label>
                 <input matInput
@@ -82,7 +83,7 @@
         <div class="leftPart__form__matError"  *ngIf="getInvalidInput(maxPrice)">
             <mat-error><markdown [data]="maxPriceError"></markdown></mat-error>
         </div>
-        <div class="leftPart__form__viewBy input">
+        <div class="leftPart__form__viewBy input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12">
             <mat-form-field>
                 <mat-label>View By</mat-label>
                 <mat-select [formControlName]="viewBy"
@@ -95,7 +96,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <div class="leftPart__form__searchButton">
+        <div class="leftPart__form__searchButton col-xl-9 col-lg-9 col-sm-12 col-md-6 col-6">
             <button [disabled]="flightSearchForm.invalid" (click)="getFlightSearchResult()">Search</button>
         </div>
     </form>

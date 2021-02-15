@@ -37,6 +37,24 @@
             padding-top: 2%;
         }
 
+        @media screen and (max-width: 992px) {
+            &__duration, &__maxPrice, &__viewBy {
+                ::ng-deep {
+                   .mat-form-field-infix {
+                       border-top: 0;
+                   }
+                }
+
+                mat-form-field {
+                    height: 45px;
+                }
+            }
+
+            &__viewBy {
+                padding-top: 1%;
+            }
+        }
+
         &__searchButton {
             padding-top: 2%;
             width: 40%;
