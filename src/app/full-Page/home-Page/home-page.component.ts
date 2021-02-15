@@ -39,6 +39,7 @@ export class HomePageComponent implements OnInit {
     this.homePageService.postLoginsInformations().subscribe();
     this.toggleControl.valueChanges.subscribe((dark) => {
       this.isDarkTheme = dark;
+      this.store.set('darkTheme', this.isDarkTheme);
     });
   }
 

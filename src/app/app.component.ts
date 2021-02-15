@@ -11,12 +11,13 @@ export class AppComponent {
   title = 'Amadeus-Test-Project';
 
   isLoading: boolean;
+  isDarkTheme: boolean;
 
   constructor(private readonly store: Store){}
 
   ngAfterContentChecked() {
     this.isLoading = this.store.value.isLoading;
-    console.log('loading',this.isLoading);
+    this.isDarkTheme = this.store.value.darkTheme;
   }
 
 }
