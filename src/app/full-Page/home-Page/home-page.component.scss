@@ -7,6 +7,10 @@
     --scrollbarBG: $lightMode;
     --thumbBG: #a79c95;
 
+    &__leftPart {
+        padding-bottom: 6%;
+    }
+
     &__rightPart {
         overflow: hidden;
         overflow-y: scroll;
