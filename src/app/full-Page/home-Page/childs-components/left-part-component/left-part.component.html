@@ -22,7 +22,7 @@
                 <markdown [data]="followIotaLink"></markdown>
             </div>
         </div>
-        <div class="leftPart__form__departureDate input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12" [class.error]="getInvalidDate()">
+        <div class="leftPart__form__departureDate input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12 pt-2" [class.error]="getInvalidDate()">
             <mat-form-field>
                 <mat-label>Depart date</mat-label>
                 <input matInput [matDatepicker]="picker" [formControlName]="departureDate">
@@ -30,7 +30,7 @@
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
         </div>
-        <div class="leftPart__form__matError" *ngIf="getInvalidDate()">
+        <div class="leftPart__form__matError pl-3 pb-4" *ngIf="getInvalidDate()">
             <mat-error>{{getErrorDateMsg()}}</mat-error>
         </div>
         <div class="leftPart__form__oneWay input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12">
@@ -41,7 +41,7 @@
               One Way
             </div>
         </div>
-        <div class="leftPart__form__duration input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12" *ngIf="getOneWayValue()" [class.error]="getInvalidInput(duration)">
+        <div class="leftPart__form__duration input col-xl-12 col-lg-12 col-sm-12 col-md-6 col-12" *ngIf="!getOneWayValue()" [class.error]="getInvalidInput(duration)">
             <mat-form-field class="inputWithInformations">
                 <mat-label>Duration</mat-label>
                 <input matInput

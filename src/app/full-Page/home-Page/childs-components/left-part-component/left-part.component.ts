@@ -65,7 +65,7 @@ export class LeftPartComponent implements OnInit {
   getInvalidDate(): boolean {
 
     //-------- Calc of valid date -----------
-    let inputDate = moment(this.flightSearchForm.get(this.departureDate).value).format('yyyy-MM-DD');
+    let inputDate = moment(this.departureDateFormValue.value).format('yyyy-MM-DD');
     let dateOfDay = moment().format('yyyy-MM-DD');
 
     if(inputDate) {
@@ -78,7 +78,6 @@ export class LeftPartComponent implements OnInit {
     let timeDiff = inputDateDateFormat.getTime() - dayDateFormat.getTime();
     let daysDiff = timeDiff / (1000 * 3600 * 24);
     (daysDiff > 18) ? this.dateSuperiorEighteenDays = true : this.dateSuperiorEighteenDays = false;
-
 
 
     return this.dateInferiorDayDate || this.dateSuperiorEighteenDays;
@@ -120,9 +119,13 @@ export class LeftPartComponent implements OnInit {
     this.emitFlightSearch.emit(this.flightSearchForm.value);
   }
 
+  get departureDateFormValue() {
+    return this.flightSearchForm.get(this.departureDate);
+  }
+
   private flightSearchFormConstruction() {
     this.flightSearchForm = this.formBuilder.group({
-      origin: ['', [Validators.required, Validators.maxLength(3)]],
+      origin: ['', [Validators.required, Validators.minLength(3),Validators.maxLength(3)]],
       departureDate: [''],
       oneWay: [''],
       duration: ['', [Validators.maxLength(2), Validators.pattern(this.numbeRegex)]],
@@ -145,9 +148,9 @@ export class LeftPartComponent implements OnInit {
       this.flightSearchForm.get(this.viewBy).patchValue('');
     }
 
-    if(this.flightSearchForm.get(this.nonStop).value) {
-      let inputDate = moment(this.flightSearchForm.get(this.departureDate).value).format('yyyy-MM-DD');
-      this.flightSearchForm.get(this.departureDate).patchValue(inputDate);
+    if(this.departureDateFormValue.value) {
+      let inputDate = moment(this.departureDateFormValue.value).format('yyyy-MM-DD');
+      this.departureDateFormValue.patchValue(inputDate);
     }
   }
 
